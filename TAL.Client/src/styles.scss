@@ -1,0 +1,84 @@
+/* You can add global styles to this file, and also import other style files */
+/**
+* Import Roboto Font from google fonts API
+*/
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+/**
+* Reset CSS
+*/
+
+*, *:after , *:before{
+    box-sizing: border-box;
+}
+:root {
+    font-size: 14px;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-size: 1rem;
+    line-height: 1.3;
+    font-weight: normal;
+    color: #333435;
+    font-family: 'Roboto', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background: #eceff1;
+}
+
+h1, h2, h3, h4, h5, h6 , p{
+    margin: 0 0 1rem;
+}
+
+
+
+/**
+* Helpers
+*/
+
+.flex-center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.vh-100{
+    min-height: 100vh;
+}
+
+.container{
+    padding: 0 15px;
+    width: 100%;
+    max-width: 640px;
+}
+
+
+/**
+* Components
+*/
+
+
+// card
+.card {
+    background: #fff;
+    width: 100%;
+    box-shadow:  0px 2px 8px rgba(99, 99, 99, 0.2);
+    &-header {
+        padding: .75rem 1rem;
+    }
+    &-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        line-height: 1.2;
+        margin: 0;
+    }
+    &-body {
+        padding: 1rem;
+    }
+    &-footer{
+        padding: 1.25rem 1rem;
+    }
+}
