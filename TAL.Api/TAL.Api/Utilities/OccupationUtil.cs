@@ -22,9 +22,9 @@ namespace TAL.Api.Utilities
             }
         }
 
-        public static List<OccupationData> GetoccupationData()
+        public static List<OccupationDetails> GetoccupationData()
         {
-            return JsonConvert.DeserializeObject<List<OccupationData>>(File.ReadAllText("./OccupationtData.json"));
+            return JsonConvert.DeserializeObject<List<OccupationDetails>>(File.ReadAllText("./OccupationtData.json"));
         }
     }
 }

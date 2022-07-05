@@ -4,6 +4,7 @@ using TAL.Api.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add dependencies.
+builder.Services.AddSingleton<IPremiumService, PremiumService>();
 builder.Services.AddSingleton<IOccupationService, OccupationService>();
 
 builder.Services.AddControllers();
@@ -11,7 +12,20 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//Add CORS
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:4200")
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
 var app = builder.Build();
+
+app.UseCors();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

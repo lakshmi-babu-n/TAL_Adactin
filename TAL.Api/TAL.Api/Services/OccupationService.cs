@@ -8,7 +8,7 @@ namespace TAL.Api.Services
     public class OccupationService : IOccupationService
     {
 
-        static readonly List<OccupationData> OccupationData = new List<OccupationData>();
+        static readonly List<OccupationDetails> OccupationData = new List<OccupationDetails>();
         static OccupationService()
         {
             if (!OccupationData.Any())
@@ -18,6 +18,11 @@ namespace TAL.Api.Services
         public string[] GetOccupationList()
         {
             return OccupationData.Select(o => o.Occupation).ToArray();
+        }
+
+        public List<OccupationDetails> GetOccupationDetails()
+        {
+            return OccupationData;
         }
     }
 }

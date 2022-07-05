@@ -1,8 +1,11 @@
-﻿namespace TAL.Api.Interfaces
+﻿using TAL.Api.Models;
+
+namespace TAL.Api.Interfaces
 {
     public interface IOccupationService
     {
-        public string[] GetOccupationList();
+        string[] GetOccupationList();
+        List<OccupationDetails> GetOccupationDetails();
 
     }
 }
