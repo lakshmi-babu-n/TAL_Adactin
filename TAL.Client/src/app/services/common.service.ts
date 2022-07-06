@@ -7,11 +7,11 @@ import { Subject } from 'rxjs';
 export class CommonService {
   premium = new Subject<number>();
 
-  setPerium(premium: number){
+  setPremium(premium: number){
     this.premium.next(premium);
   }
 
-  getPerium(){
+  getPremium(){
     return this.premium
   }
 }

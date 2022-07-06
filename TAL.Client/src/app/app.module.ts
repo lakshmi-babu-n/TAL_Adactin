@@ -14,8 +14,8 @@ import { CommonService } from './services/common.service';
     PermiumCalcFormComponent,
     PermiumCalcResultComponent,
   ],
-  imports: [BrowserModule, ReactiveFormsModule,HttpClientModule],
-  providers: [TalApiService,CommonService],
+  imports: [BrowserModule, ReactiveFormsModule, HttpClientModule],
+  providers: [TalApiService, CommonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

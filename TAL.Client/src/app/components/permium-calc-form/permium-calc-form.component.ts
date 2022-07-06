@@ -102,7 +102,7 @@ export class PermiumCalcFormComponent implements OnInit {
         this.talApiService.calcMonthlyPremium(this.premiumForm.value).subscribe(
           (premium: number) => {
             console.log(premium);
-            this.commonService.setPerium(premium);
+            this.commonService.setPremium(premium);
           },
           (error) => console.log(error.message)
         );
