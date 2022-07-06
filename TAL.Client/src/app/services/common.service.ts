@@ -5,13 +5,13 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class CommonService {
-  permium = new Subject<number>();
+  premium = new Subject<number>();
 
-  setPerium(permium: number){
-    this.permium.next(permium);
+  setPerium(premium: number){
+    this.premium.next(premium);
   }
 
   getPerium(){
-    return this.permium
+    return this.premium
   }
 }

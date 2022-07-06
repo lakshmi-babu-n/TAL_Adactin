@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonService } from 'src/app/services/common.service';
 
 @Component({
   selector: 'app-permium-calc-result',
@@ -6,5 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./permium-calc-result.component.scss'],
 })
 export class PermiumCalcResultComponent implements OnInit {
-  ngOnInit(): void {}
+  premiumAmount: number = 0;
+
+  constructor(private commonService: CommonService) {}
+
+  ngOnInit() {
+    this.commonService.premium.subscribe(
+      (premiumAmount) => (this.premiumAmount = premiumAmount)
+    );
+  }
 }

@@ -25,7 +25,7 @@ namespace TAL.Api.Services
                     monthlyPremium = (premiumData.DeathCoverageAmount * ratingFactor * premiumData.Age) / 1000 * 12;
                 }
             }
-            return Math.Round(monthlyPremium);
+            return Math.Round(monthlyPremium,2);
         }
 
     }
