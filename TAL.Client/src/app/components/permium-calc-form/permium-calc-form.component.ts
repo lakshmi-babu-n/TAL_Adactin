@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TalPremiumService } from 'src/app/services/TalPremiumService';
 import { ValidateDOB } from 'src/app/validators/dateOfBirth.validator';
 
 @Component({
@@ -9,12 +10,17 @@ import { ValidateDOB } from 'src/app/validators/dateOfBirth.validator';
 })
 export class PermiumCalcFormComponent implements OnInit {
   public premiumForm!: FormGroup;
+  public occupationList: string[] = [];
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private talPremiumService: TalPremiumService
+  ) {}
 
   ngOnInit(): void {
     this.generateForm();
     this.dobOnChange();
+    this.getOccupationList();
   }
 
   // Create Form
@@ -35,7 +41,7 @@ export class PermiumCalcFormComponent implements OnInit {
           Validators.pattern(
             /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
           ),
-          ValidateDOB
+          ValidateDOB,
         ],
       ],
       age: ['', Validators.required],
@@ -72,5 +78,17 @@ export class PermiumCalcFormComponent implements OnInit {
       age--;
     }
     return age;
+  }
+
+  //Get occupation list to be populated in the dropdown
+  getOccupationList() {
+    this.talPremiumService.getOccupationList().subscribe(
+      (occupationList) => {
+        this.occupationList = occupationList;
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   }
 }

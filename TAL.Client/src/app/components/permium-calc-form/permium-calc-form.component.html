@@ -80,6 +80,7 @@
     <label>Occupation <span class="text-error">*</span></label>
     <select formControlName="occupation" class="form-control">
       <option disabled selected value="">Occupation</option>
+      <option *ngFor="let occupation of occupationList" [value]="occupation">{{occupation}}</option>
     </select>
 
     <!--Occupation required validation message-->
