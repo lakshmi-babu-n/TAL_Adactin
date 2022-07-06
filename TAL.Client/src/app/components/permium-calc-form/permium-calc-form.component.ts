@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ValidateDOB } from 'src/app/validators/dateOfBirth.validator';
 
 @Component({
   selector: 'app-permium-calc-form',
@@ -33,6 +34,7 @@ export class PermiumCalcFormComponent implements OnInit {
           Validators.pattern(
             /^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$/
           ),
+          ValidateDOB
         ],
       ],
       age: ['', Validators.required],
