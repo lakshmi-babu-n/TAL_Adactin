@@ -1,16 +1,17 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
+import { PermiumCalcFormComponent } from './components/permium-calc-form/permium-calc-form.component';
+import { PermiumCalcResultComponent } from './components/permium-calc-result/permium-calc-result.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PermiumCalcFormComponent,
+    PermiumCalcResultComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
