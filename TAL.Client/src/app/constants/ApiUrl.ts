@@ -1,3 +1,4 @@
 export const ApiUrl = {
-  occupationList: 'occupation'
+  occupationList: 'occupation',
+  monthlyPremium: 'premium/monthlyPremium'
 };

@@ -4,9 +4,10 @@ import { environment } from 'src/environments/environment';
 import { ApiUrl } from '../constants/ApiUrl';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class TalPremiumService {
+export class TalApiService {
+
   constructor(private http: HttpClient) {}
 
   //API call to get occupation list
@@ -14,5 +15,10 @@ export class TalPremiumService {
     return this.http.get<string[]>(
       environment.apiBaseUrl + ApiUrl.occupationList
     );
+  }
+
+  //API call to get calculated monthly premium
+  calcMonthlyPremium(payload: any){
+    return  this.http.post<number>(environment.apiBaseUrl + ApiUrl.monthlyPremium, payload)
   }
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TalPremiumService } from 'src/app/services/TalPremiumService';
+import { CommonService } from 'src/app/services/common.service';
+import { TalApiService } from 'src/app/services/tal-api.service';
 import { ValidateDOB } from 'src/app/validators/dateOfBirth.validator';
 
 @Component({
@@ -14,13 +15,15 @@ export class PermiumCalcFormComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private talPremiumService: TalPremiumService
+    private talApiService: TalApiService,
+    private commonService: CommonService
   ) {}
 
   ngOnInit(): void {
     this.generateForm();
     this.dobOnChange();
     this.getOccupationList();
+    this.onFormStatusChange();
   }
 
   // Create Form
@@ -82,13 +85,28 @@ export class PermiumCalcFormComponent implements OnInit {
 
   //Get occupation list to be populated in the dropdown
   getOccupationList() {
-    this.talPremiumService.getOccupationList().subscribe(
+    this.talApiService.getOccupationList().subscribe(
       (occupationList) => {
         this.occupationList = occupationList;
       },
       (error) => {
-        console.log(error);
+        console.log(error.message);
       }
     );
+  }
+
+  //Set calculated premium amount based on form inputs
+  onFormStatusChange() {
+    this.premiumForm.statusChanges.subscribe((status: string) => {
+      if (status == 'VALID') {
+        this.talApiService.calcMonthlyPremium(this.premiumForm.value).subscribe(
+          (premium: number) => {
+            console.log(premium);
+            this.commonService.setPerium(premium);
+          },
+          (error) => console.log(error.message)
+        );
+      }
+    });
   }
 }

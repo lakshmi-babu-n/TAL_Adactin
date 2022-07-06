@@ -5,6 +5,8 @@ import { AppComponent } from './app.component';
 import { PermiumCalcFormComponent } from './components/permium-calc-form/permium-calc-form.component';
 import { PermiumCalcResultComponent } from './components/permium-calc-result/permium-calc-result.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TalApiService } from './services/tal-api.service';
+import { CommonService } from './services/common.service';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     PermiumCalcResultComponent,
   ],
   imports: [BrowserModule, ReactiveFormsModule,HttpClientModule],
-  providers: [],
+  providers: [TalApiService,CommonService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
