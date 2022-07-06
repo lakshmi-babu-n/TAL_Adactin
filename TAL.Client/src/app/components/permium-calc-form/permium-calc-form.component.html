@@ -1,11 +1,122 @@
-<form id="premiumForm">
+<form [formGroup]="premiumForm" id="premiumForm">
+  <!-- Name -->
+  <div class="form-group">
+    <label>Name <span class="text-error">*</span></label>
+    <input formControlName="name" class="form-control" type="text" />
 
- <div class="form-group">
-   <label>Name <span class="text-error">*</span> </label>
-   <input type="text" class="form-control">
-   <span class="invalid-feedback">
-     Name is required
-   </span>
- </div>
+    <!-- Name required validation Message-->
+    <span
+      *ngIf="premiumForm.get('name')?.errors?.['required'] &&
+      premiumForm.get('name')?.touched"
+      class="invalid-feedback"
+    >
+      Name is required
+    </span>
 
+    <!--Name min characters validation message-->
+    <span
+      *ngIf="premiumForm.get('name')?.errors?.['minlength'] &&
+      premiumForm.get('name')?.touched"
+      class="invalid-feedback"
+    >
+      Please enter at least 2 characters for a name
+    </span>
+
+    <!-- Name max characters validation message-->
+    <span
+      *ngIf="premiumForm.get('name')?.errors?.['maxlength'] &&
+      premiumForm.get('name')?.touched"
+      class="invalid-feedback"
+    >
+      Maximum number of characters allowed is 100
+    </span>
+  </div>
+
+  <!-- Date Of Birth -->
+  <div class="form-group">
+    <label>Date Of Birth <span class="text-error">*</span></label>
+    <input
+      formControlName="dob"
+      forma
+      class="form-control"
+      type="date"
+      placeholder="DD-MM-YYYY"
+    />
+
+    <!--DOB required validation message-->
+    <span
+      *ngIf="premiumForm.get('dob')?.errors?.['required'] &&
+      premiumForm.get('dob')?.touched"
+      class="invalid-feedback"
+    >
+      Date of Birth is required
+    </span>
+
+    <!--DOB pattern validation message-->
+    <span
+      *ngIf="premiumForm.get('dob')?.errors?.['pattern']"
+      class="invalid-feedback"
+    >
+      Date of Birth must be a valid date in the format dd-mm-yyyy
+    </span>
+  </div>
+
+  <!-- Age -->
+  <div class="form-group">
+    <label>Age</label>
+    <input formControlName="age" class="form-control" type="number" readonly />
+  </div>
+
+  <!-- Occupation -->
+  <div class="form-group">
+    <label>Occupation <span class="text-error">*</span></label>
+    <select formControlName="occupation" class="form-control">
+      <option disabled selected value="">Occupation</option>
+    </select>
+
+    <!--Occupation required validation message-->
+    <span
+      *ngIf="premiumForm.get('occupation')?.errors?.['required'] &&
+      premiumForm.get('occupation')?.touched"
+      class="invalid-feedback"
+    >
+      Occupation is required
+    </span>
+  </div>
+
+  <!-- Death Coverage -->
+  <div class="form-group">
+    <label>Death Coverage in AUD <span class="text-error">*</span></label>
+    <input
+      formControlName="deathCoverageAmount"
+      min="1"
+      class="form-control"
+      type="number"
+    />
+
+    <!-- Death Coverage required validation message-->
+    <span
+      *ngIf="premiumForm.get('deathCoverageAmount')?.errors?.['required'] &&
+      premiumForm.get('deathCoverageAmount')?.touched"
+      class="invalid-feedback"
+    >
+      Death Coverage is required
+    </span>
+    <!-- Death Coverage pattern validation message-->
+    <span
+      *ngIf="premiumForm.get('deathCoverageAmount')?.errors?.['pattern'] &&
+      premiumForm.get('deathCoverageAmount')?.touched"
+      class="invalid-feedback"
+    >
+      Invalid Amount
+    </span>
+    <!--Death Coverage min characters validation message-->
+    <span
+      *ngIf="premiumForm.get('deathCoverageAmount')?.errors?.['min'] &&
+      premiumForm.get('deathCoverageAmount')?.touched"
+      class="invalid-feedback"
+    >
+      Please enter minimum coverage 1 AUD
+    </span>
+  </div>
 </form>
