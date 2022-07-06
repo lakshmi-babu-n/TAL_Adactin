@@ -14,6 +14,7 @@ export class PermiumCalcFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateForm();
+    this.dobOnChange();
   }
 
   // Create Form
@@ -48,5 +49,28 @@ export class PermiumCalcFormComponent implements OnInit {
         ],
       ],
     });
+  }
+
+  //Auto calculate and set age value on DOB change
+  dobOnChange() {
+    this.premiumForm.get('dob')?.valueChanges.subscribe((val) => {
+      if (!this.premiumForm.get('dob')?.errors) {
+        this.premiumForm.patchValue({
+          age: this.getAge(val),
+        });
+      }
+    });
+  }
+
+  //Calculate age based on DOB
+  getAge(dateString: string) {
+    const today = new Date();
+    const birthDate = new Date(dateString);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const month = today.getMonth() - birthDate.getMonth();
+    if (month < 0 || (month === 0 && today.getDate() < birthDate.getDate())) {
+      age--;
+    }
+    return age;
   }
 }
